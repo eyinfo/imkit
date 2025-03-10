@@ -643,7 +643,6 @@ public class MsgListAdapter<MESSAGE extends IMessage> extends RecyclerView.Adapt
         void applyStyle(MessageListStyle style);
     }
 
-    @Deprecated
     public interface OnLoadMoreListener {
         void onLoadMore(int page, int totalCount);
     }

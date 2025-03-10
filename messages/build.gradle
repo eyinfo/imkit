@@ -33,7 +33,7 @@ dependencies {
 }
 
 mavenPublishing {
-    def VERSION = "1.0.0"
+    def VERSION = "1.0.1"
     def GROUP_ID = "io.github.eyinfo"
     def ARTIFACT_ID = "messages"
     def DESCRIPTION = "Android chat view tool library, support text, voice, picture, chat bubble customization, Emoji and other functions; Compatible with AndroidX and the latest Gradle 8.7"

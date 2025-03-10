@@ -19,15 +19,6 @@ public interface OnMenuClickListener {
     boolean onSendTextMessage(CharSequence input);
 
     /**
-     * Files when send photos or videos.
-     * When construct send message, you need to judge the type
-     * of file item, according to
-     *
-     * @param list List of file item objects
-     */
-    void onSendFiles(List<FileItem> list);
-
-    /**
      * Fires when voice button is on click.
      */
     boolean switchToMicrophoneMode();
@@ -36,6 +27,15 @@ public interface OnMenuClickListener {
      * Fires when photo button is on click.
      */
     boolean switchToGalleryMode();
+
+    /**
+     * Files when send photos or videos.
+     * When construct send message, you need to judge the type
+     * of file item, according to
+     *
+     * @param list List of file item objects
+     */
+    void onSendFiles(List<FileItem> list);
 
     /**
      * Fires when camera button is on click.
