@@ -1,5 +1,9 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     alias(libs.plugins.android.library)
+    id "com.vanniktech.maven.publish" version "0.30.0"
+    id "signing"
 }
 
 android {
@@ -27,4 +31,50 @@ dependencies {
     implementation libs.appcompat
     implementation libs.material
     api libs.glide
+}
+
+mavenPublishing {
+    def VERSION = "1.0.0"
+    def GROUP_ID = "io.github.eyinfo"
+    def ARTIFACT_ID = "chatinput"
+    def DESCRIPTION = "Android chat view tool library, support text, voice, picture, chat bubble customization, Emoji and other functions; Compatible with AndroidX and the latest Gradle 8.7"
+
+    coordinates(GROUP_ID, ARTIFACT_ID, VERSION)
+    pom {
+        name = ARTIFACT_ID
+        description = DESCRIPTION
+        url = PROJECT_URL
+        licenses {
+            license {
+                name = SOURCE_LICENSE_NAME
+                url = SOURCE_LICENSE_URL
+                distribution = SOURCE_LICENSE_DISTRIBUTION
+            }
+        }
+        developers {
+            developer {
+                name = DEVELOP_NAME
+                url = PROJECT_URL
+                email = DEVELOP_EMAIL
+            }
+        }
+        scm {
+            connection = "scm:git:git://github.com/${GIT_RELATIVE_URL}"
+            developerConnection = "scm:git:ssh://github.com/${GIT_RELATIVE_URL}"
+            url = "https://github.com/${GIT_RELATIVE_URL}"
+        }
+    }
+    // 发布到Sonatype时需要设置SonatypeHost
+    // SonatypeHost.CENTRAL_PORTAL
+    // SonatypeHost.DEFAULT
+    // SonatypeHost.S01
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.version = true
+    options.author = true
+    options.encoding = "UTF-8"
+    options.charSet = "UTF-8"
 }
